@@ -4,6 +4,31 @@
 A simple webapp that prints the hostname
 
 ```shell
+docker run -d --rm -p 8080:8080 dirc/hostname:1.0
+
+curl http://localhost:8080
+
+```
+
+## Docker
+
+```shell
+TAG=1.0
+IMAGE=dirc/hostname
+
+docker build -t $IMAGE:$TAG .
+docker build -t $IMAGE:latest .
+
+docker push $IMAGE:$TAG
+docker push $IMAGE:latest
+
+```
+
+## webapp
+
+Run go webapp
+
+```shell
 go run app.go
 
 ```
