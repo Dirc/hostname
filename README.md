@@ -3,9 +3,18 @@
 
 A simple webapp that prints the hostname
 
+## Run
+
 ```shell
+# Kubernetes
+kubectl create deployment web --image=dirc/hostname --replicas=3
+kubectl expose deployment web --port 8080
+kubectl port-forward svc/web 8080
+
+# Docker
 docker run -d --rm -p 8080:8080 dirc/hostname:1.0
 
+# Verify
 curl http://localhost:8080
 
 ```
