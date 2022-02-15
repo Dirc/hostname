@@ -22,16 +22,16 @@ curl http://localhost:8080
 ## Docker
 
 ```shell
-TAG=1.1
+TAG=1.2
 IMAGE=dirc/hostname
 
-docker build -t $IMAGE:$TAG .
-docker build -t $IMAGE:latest .
+docker build -t ${IMAGE}:$TAG .
+docker build -t ${IMAGE}:latest .
 
-docker run -d --rm -p 8080:8080 $IMAGE:$TAG
+docker run -d --rm -p 8080:8080 ${IMAGE}:$TAG
 
-docker push $IMAGE:$TAG
-docker push $IMAGE:latest
+docker push ${IMAGE}:$TAG
+docker push ${IMAGE}:latest
 
 ```
 
