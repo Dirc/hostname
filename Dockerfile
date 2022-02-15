@@ -9,6 +9,7 @@ RUN go mod download && go mod verify
 COPY . .
 RUN go build -v -o /usr/local/bin/app ./...
 
+FROM alpine
+COPY --from=0 /usr/local/bin/app .
 EXPOSE 8080
-
-CMD ["app"]
+CMD ["/app"]
