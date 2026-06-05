@@ -12,7 +12,7 @@ kubectl expose deployment web --port 8080
 kubectl port-forward svc/web 8080
 
 # Docker
-docker run -d --rm -p 8080:8080 dirc/hostname:1.0
+docker run -d --rm -p 8080:8080 dirc/hostname:latest
 
 # Verify
 curl http://localhost:8080
@@ -22,7 +22,7 @@ curl http://localhost:8080
 ## Docker
 
 ```shell
-TAG=1.2
+TAG=1.3
 IMAGE=dirc/hostname
 
 docker build -t ${IMAGE}:$TAG .
