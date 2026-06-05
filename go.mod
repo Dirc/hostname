@@ -1,5 +1,5 @@
-module github.com/dirc/hostname
+module hostname
 
-go 1.17
+go 1.26
 
-require github.com/gorilla/mux v1.8.0 // indirect
+require github.com/gorilla/mux v1.8.1

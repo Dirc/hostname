@@ -1,15 +1,15 @@
-FROM golang:1.17-alpine
+FROM golang:1.26-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
+ENV CGO_ENABLED=0
 
-# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
-COPY . .
-RUN go build -v -o /usr/local/bin/app ./...
+COPY main.go ./
+RUN go build -v -o /hostname .
 
-FROM alpine
-COPY --from=0 /usr/local/bin/app .
+FROM scratch
+COPY --from=0 /hostname /hostname
 EXPOSE 8080
-CMD ["/app"]
+CMD ["/hostname"]
