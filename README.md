@@ -1,7 +1,10 @@
 
 # Golang webapp - hostname
 
-A simple webapp that prints the hostname
+A simple webapp that:
+
+- prints the hostname
+- can also show an environment variable
 
 ## Run
 
@@ -13,9 +16,11 @@ kubectl port-forward svc/web 8080
 
 # Docker
 docker run -d --rm -p 8080:8080 dirc/hostname:latest
+docker run -d --rm -e FOO=BAR -p 8080:8080 dirc/hostname:latest
 
 # Verify
 curl http://localhost:8080
+curl http://localhost:8080/env
 
 ```
 
@@ -37,9 +42,20 @@ docker push ${IMAGE}:latest
 
 ## webapp
 
-Run go webapp
+Run the Go webapp:
 
 ```shell
-go run app.go
+go run main.go
+```
 
+## Linting
+
+Install and run `golangci-lint` locally:
+
+```shell
+# Install golangci-lint (compatible with Go 1.26)
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.60.0
+
+# Run linting
+golangci-lint run
 ```
