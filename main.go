@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+
 	"github.com/gorilla/mux"
 )
 
@@ -22,7 +23,8 @@ func hostname(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(w, "Hostname: %s", hostname )
+	fmt.Printf("Hostname: %s\n", hostname)
+	fmt.Fprintf(w, "Hostname: %s", hostname)
 }
 
 func env(w http.ResponseWriter, r *http.Request) {
@@ -30,6 +32,6 @@ func env(w http.ResponseWriter, r *http.Request) {
 	if env == "" {
 		fmt.Fprintf(w, "Environment variable FOO is not found")
 	} else {
-    fmt.Fprintf(w, "FOO=%s", env )
+		fmt.Fprintf(w, "FOO=%s", env)
 	}
 }

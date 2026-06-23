@@ -22,7 +22,7 @@ curl http://localhost:8080
 ## Docker
 
 ```shell
-TAG=1.3
+TAG=1.4
 IMAGE=dirc/hostname
 
 docker build -t ${IMAGE}:$TAG .
