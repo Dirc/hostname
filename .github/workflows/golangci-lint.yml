@@ -4,17 +4,27 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+permissions:
+  contents: read
+  
 jobs:
   lint:
-    name: Lint
+    name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - name: Clone the code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v4
+          go-version-file: go.mod
+          cache: false
+
+      - name: tidy
+        uses: katexochen/go-tidy-check@v2
+
+      - name: Run linter
+        uses: golangci/golangci-lint-action@v9
         with:
-          version: v1.60.0
+          version: v2.12.2
